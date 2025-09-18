@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat Izin Sakit</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f2f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      background: #ffffff;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      text-align: center;
+      background: #2980b9;
+      padding: 20px;
+      color: white;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+    }
+    .form-section {
+      padding: 30px 40px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #34495e;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccd6dd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .btn {
+      margin-top: 25px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #1f6391;
+    }
+    .preview {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e0e6eb;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Bagian Header tanpa logo -->
+    <div class="header">
+      <h1>Surat Izin Sakit</h1>
+      <p>MAN 1 Kota Batam</p>
+    </div>
+
+    <!-- Bagian Form -->
+    <div class="form-section">
+      <form id="izinForm">
+        <label for="kota">Kota:</label>
+        <input type="text" id="kota" placeholder="Tuliskan nama kota...">
+
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" id="tanggal">
+
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" placeholder="Tuliskan nama...">
+
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" placeholder="Contoh: XI IPA 2">
+
+        <label for="sakit">Sakit Apa:</label>
+        <input type="text" id="sakit" placeholder="Tuliskan penyakit...">
+
+        <button type="button" class="btn" onclick="generateSurat()">Buat Surat</button>
+      </form>
+
+      <!-- Preview hasil surat -->
+      <div class="preview" id="hasilSurat" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script>
+    function generateSurat() {
+      const kota = document.getElementById("kota").value;
+      const tanggal = document.getElementById("tanggal").value;
+      const nama = document.getElementById("nama").value;
+      const kelas = document.getElementById("kelas").value;
+      const sakit = document.getElementById("sakit").value;
+
+      const hasil = `
+        <p>${kota ? kota + ',' : ''} ${tanggal ? tanggal : ''}</p>
+        <p>Kepada Yth.<br>
+        Bapak/Ibu Guru Wali Kelas<br>
+        di Tempat</p>
+        
+        <p>Dengan hormat,</p>
+        <p>Saya yang bertanda tangan di bawah ini:</p>
+        <p>Nama : ${nama}<br>
+        Kelas : ${kelas}</p>
+        
+        <p>Dengan ini memberitahukan bahwa saya tidak dapat mengikuti pelajaran pada hari ini karena sakit ${sakit}. 
+        Oleh karena itu, saya mohon Bapak/Ibu Guru dapat memberikan izin.</p>
+
+        <p>Demikian surat izin ini saya sampaikan. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.</p>
+
+        <div style="text-align:right; margin-top:40px;">
+          Hormat saya,<br><br><br>
+          (${nama})
+        </div>
+      `;
+
+      const hasilSurat = document.getElementById("hasilSurat");
+      hasilSurat.style.display = "block";
+      hasilSurat.innerHTML = hasil;
+    }
+  </script>
+</body>
+</html>
